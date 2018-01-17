@@ -38,15 +38,16 @@ public class Main {
 	      System.out.println(e);
 	    }
 	    
-	    //recolhendo as dimensões da imagem
-	    
 	    	    	    
 	}
 
 	//Lê os pixels, tira os RGBs e faz os calculos para greyscale
 	public static void LerPixels() {
 		int contadorElementos = 0;
-	    largura = imagem.getWidth();
+
+	    //recolhendo as dimensões da imagem
+	    
+		largura = imagem.getWidth();
 	    altura = imagem.getHeight();
 	    	    
 	    totalDeTonsDeCinza = new int[(largura*altura)];
@@ -120,13 +121,27 @@ public class Main {
 		System.out.println("A entropia da imagem é de["+entropia+"].");
 
 	}
+	
+	public static void CalcularRLE() {
+		
+		//RLE funciona contando quantos elementos consecutivos do mesmo termo por exemplo aaabbccc, vira a3,b2,c3
+		//pra isso uso o vetor com todos os tons, pego o primeiro elemento e comparo com o proximo, se for igual, o contador sobe +1, caso contrario, ele escreve o 		
+		// elemento que ele está testando, seguido da quantidade de elementos contados até ali
+		for(int i = 0; i <totalDeTonsDeCinza.length; i++)
+		{
+			
+			
+		}
+		
+	}
+	
 
 	public static void main(String[] args) {
 		 
 		LerImagem();
 		LerPixels();
 		CalcularEntropia();
-		
+		CalcularRLE();
 
 	}
 
