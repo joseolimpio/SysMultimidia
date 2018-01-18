@@ -1,10 +1,10 @@
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 import java.awt.image.BufferedImage;
@@ -32,7 +32,7 @@ public class Main {
 	    //lendo a imagem
 	    
 	    try{
-	      arquivo = new File("C:\\Users\\brisatc315.negrao\\Desktop\\Passados\\lenna.jpg");
+	      arquivo = new File("C:\\lenna.jpg");
 	      imagem = ImageIO.read(arquivo);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -130,8 +130,10 @@ public class Main {
 		// elemento que ele está testando, seguido da quantidade de elementos contados até ali
 		
 		int contadorElementosRLE = 0;
-		int [] elementoRLE = new int[totalDeTonsDeCinza.length] ;
-		int [] elementoQTD = new int[totalDeTonsDeCinza.length];
+		
+	    Map<Integer, Integer> RLE = new HashMap<>();
+		
+
 		int j = 0;
 		for(int i = 0; i <totalDeTonsDeCinza.length; i++)
 		{
@@ -144,16 +146,42 @@ public class Main {
 					
 				
 						}else {
-					
-								elementoRLE[j]= totalDeTonsDeCinza[i];
-								elementoQTD[j]= contadorElementosRLE;
-								j++;
-					
+								if (contadorElementosRLE == 0)
+								{
+							    contadorElementosRLE= 1;
+								}
+								RLE.put(totalDeTonsDeCinza[i],contadorElementosRLE);
+							    contadorElementosRLE = 0;
+							    
 						}
 			
 				}
 		}
 		
+	
+	/*
+		Set<Integer> chaves = RLE.keySet();
+		for (Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();)
+		{
+			Integer chave = iterator.next();
+			if(chave != null)
+				System.out.println(chave +" | " + RLE.get(chave));
+		}   
+		
+		*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 	
 
