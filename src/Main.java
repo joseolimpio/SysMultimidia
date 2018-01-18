@@ -62,11 +62,12 @@ public class Main {
 	    		{       
 	    			//System.out.println("x,y: " + j + ", " + i);
 	    			int pixel = imagem.getRGB(j, i);
-	    			int r = (pixel >> 16) & 0xFF;
-	    			int g = (pixel >> 8) & 0xFF;
-	    			int b = (pixel & 0xFF);
-	    			int grey = (r + g + b)/3;
-	    			totalDeTonsDeCinza[contadorElementos]= grey; 
+	    			//int r = (pixel >> 16) & 0xFF;
+	    			//int g = (pixel >> 8) & 0xFF;
+	    			//int b = (pixel & 0xFF);
+	    			//int grey = (r + g + b)/3;
+	    			//totalDeTonsDeCinza[contadorElementos]= grey;
+	    			totalDeTonsDeCinza[contadorElementos]= pixel;
 	    			// falta imprimir o array com os valores dos tons de cinza
 	    			//System.out.println("");
 	    			//System.out.println(contadorElementos);
@@ -127,8 +128,27 @@ public class Main {
 		//RLE funciona contando quantos elementos consecutivos do mesmo termo por exemplo aaabbccc, vira a3,b2,c3
 		//pra isso uso o vetor com todos os tons, pego o primeiro elemento e comparo com o proximo, se for igual, o contador sobe +1, caso contrario, ele escreve o 		
 		// elemento que ele está testando, seguido da quantidade de elementos contados até ali
+		
+		int contadorElementosRLE = 0;
+		int [] elementoRLE = null;
+		int [] elementoQTD = null;
+		int j = 0;
 		for(int i = 0; i <totalDeTonsDeCinza.length; i++)
 		{
+		
+				if(totalDeTonsDeCinza[i] == totalDeTonsDeCinza[i+1]) 
+				{
+					
+					contadorElementosRLE++;
+					
+				
+				}else {
+					
+					elementoRLE[j]= totalDeTonsDeCinza[i];
+					elementoQTD[j]= contadorElementosRLE;
+					j++;
+					
+				}
 			
 			
 		}
