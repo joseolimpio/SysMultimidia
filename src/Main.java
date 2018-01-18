@@ -32,7 +32,7 @@ public class Main {
 	    //lendo a imagem
 	    
 	    try{
-	      arquivo = new File("C:\\lenna.jpg");
+	      arquivo = new File("C:\\Users\\brisatc315.negrao\\Desktop\\Passados\\lenna.jpg");
 	      imagem = ImageIO.read(arquivo);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -130,27 +130,28 @@ public class Main {
 		// elemento que ele está testando, seguido da quantidade de elementos contados até ali
 		
 		int contadorElementosRLE = 0;
-		int [] elementoRLE = null;
-		int [] elementoQTD = null;
+		int [] elementoRLE = new int[totalDeTonsDeCinza.length] ;
+		int [] elementoQTD = new int[totalDeTonsDeCinza.length];
 		int j = 0;
 		for(int i = 0; i <totalDeTonsDeCinza.length; i++)
 		{
-		
-				if(totalDeTonsDeCinza[i] == totalDeTonsDeCinza[i+1]) 
-				{
+			
+			if (i < (totalDeTonsDeCinza.length - 1)) {
+					if (totalDeTonsDeCinza[i] == totalDeTonsDeCinza[i+1]) 
+						{
 					
-					contadorElementosRLE++;
+							contadorElementosRLE++;
 					
 				
-				}else {
+						}else {
 					
-					elementoRLE[j]= totalDeTonsDeCinza[i];
-					elementoQTD[j]= contadorElementosRLE;
-					j++;
+								elementoRLE[j]= totalDeTonsDeCinza[i];
+								elementoQTD[j]= contadorElementosRLE;
+								j++;
 					
+						}
+			
 				}
-			
-			
 		}
 		
 	}
