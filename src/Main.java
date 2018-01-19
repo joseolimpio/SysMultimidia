@@ -32,7 +32,7 @@ public class Main {
 	    //lendo a imagem
 	    
 	    try{
-	      arquivo = new File("C:\\lenna.jpg");
+	      arquivo = new File("C:\\Users\\brisatc315.negrao\\Desktop\\Passados\\lenna.jpg");
 	      imagem = ImageIO.read(arquivo);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -62,12 +62,12 @@ public class Main {
 	    		{       
 	    			//System.out.println("x,y: " + j + ", " + i);
 	    			int pixel = imagem.getRGB(j, i);
-	    			//int r = (pixel >> 16) & 0xFF;
-	    			//int g = (pixel >> 8) & 0xFF;
-	    			//int b = (pixel & 0xFF);
-	    			//int grey = (r + g + b)/3;
-	    			//totalDeTonsDeCinza[contadorElementos]= grey;
-	    			totalDeTonsDeCinza[contadorElementos]= pixel;
+	    			int vermelho = (pixel >> 16) & 0xFF;
+	    			int verde = (pixel >> 8) & 0xFF;
+	    			int azul = (pixel & 0xFF);
+	    			int cinza = (vermelho + verde + azul)/3;
+	    			totalDeTonsDeCinza[contadorElementos]= cinza;
+	    			//totalDeTonsDeCinza[contadorElementos]= pixel;
 	    			// falta imprimir o array com os valores dos tons de cinza
 	    			//System.out.println("");
 	    			//System.out.println(contadorElementos);
@@ -130,11 +130,12 @@ public class Main {
 		// elemento que ele está testando, seguido da quantidade de elementos contados até ali
 		
 		int contadorElementosRLE = 0;
+		int[] arrayRLE;
+		int [] qtdRLE
 		
 	    Map<Integer, Integer> RLE = new HashMap<>();
-		
-
-		int j = 0;
+	    Map<Integer, Integer> contadorRLE = new HashMap<>();
+	    int j = 0;
 		for(int i = 0; i <totalDeTonsDeCinza.length; i++)
 		{
 			
@@ -149,28 +150,29 @@ public class Main {
 								if (contadorElementosRLE == 0)
 								{
 							    contadorElementosRLE= 1;
+
 								}
-								RLE.put(totalDeTonsDeCinza[i],contadorElementosRLE);
+								RLE.put(j,totalDeTonsDeCinza[i]);
+								contadorRLE.put(j,contadorElementosRLE);
 							    contadorElementosRLE = 0;
-							    
+							    j++;
 						}
 			
 				}
 		}
 		
 	
-	/*
-		Set<Integer> chaves = RLE.keySet();
-		for (Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();)
-		{
-			Integer chave = iterator.next();
-			if(chave != null)
-				System.out.println(chave +" | " + RLE.get(chave));
-		}   
+		arrayRLE = new int[(RLE.entrySet().toArray()).length];
+        
+		for (Integer key : RLE.keySet()) {
+            
+            //Capturamos o valor a partir da chave
+			Integer value = RLE.get(key);
+			Integer value2 = contadorRLE.get(key);
+            System.out.println("Posição = "+ key + " | Cor = " + value+ " | Qtd dessa cor " + value2);
+		}
+
 		
-		*/
-	
-	
 	
 	
 	
