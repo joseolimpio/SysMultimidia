@@ -32,7 +32,7 @@ public class Main {
 	    //lendo a imagem
 	    
 	    try{
-	      arquivo = new File("C:\\Users\\brisatc315.negrao\\Desktop\\Passados\\lenna.jpg");
+	      arquivo = new File("C:\\lenna.jpg");
 	      imagem = ImageIO.read(arquivo);
 	    }catch(IOException e){
 	      System.out.println(e);
@@ -60,17 +60,12 @@ public class Main {
 	      
 	    	for (int j = 0; j < largura; j++)
 	    		{       
-	    			//System.out.println("x,y: " + j + ", " + i);
 	    			int pixel = imagem.getRGB(j, i);
 	    			int vermelho = (pixel >> 16) & 0xFF;
 	    			int verde = (pixel >> 8) & 0xFF;
 	    			int azul = (pixel & 0xFF);
 	    			int cinza = (vermelho + verde + azul)/3;
 	    			totalDeTonsDeCinza[contadorElementos]= cinza;
-	    			//totalDeTonsDeCinza[contadorElementos]= pixel;
-	    			// falta imprimir o array com os valores dos tons de cinza
-	    			//System.out.println("");
-	    			//System.out.println(contadorElementos);
 	    			contadorElementos++;
 	    			
 	    		}
@@ -131,7 +126,7 @@ public class Main {
 		
 		int contadorElementosRLE = 0;
 		int[] arrayRLE;
-		int [] qtdRLE
+		int [] qtdRLE;
 		
 	    Map<Integer, Integer> RLE = new HashMap<>();
 	    Map<Integer, Integer> contadorRLE = new HashMap<>();
@@ -163,27 +158,22 @@ public class Main {
 		
 	
 		arrayRLE = new int[(RLE.entrySet().toArray()).length];
-        
-		for (Integer key : RLE.keySet()) {
-            
-            //Capturamos o valor a partir da chave
-			Integer value = RLE.get(key);
-			Integer value2 = contadorRLE.get(key);
-            System.out.println("Posição = "+ key + " | Cor = " + value+ " | Qtd dessa cor " + value2);
-		}
+		qtdRLE = new int[(contadorRLE.entrySet().toArray()).length];
+		int resultadoRLE[][] = new int[(arrayRLE.length+qtdRLE.length)][2];
 
+				for (int i = 0; i < arrayRLE.length; i++) {
+					resultadoRLE[i][0] = arrayRLE[i];
+					resultadoRLE[i][1] = qtdRLE[i];
+					}	
 		
+	;
+	double percentagem = 0;
+	double tamanhoRLE = resultadoRLE.length;
+	double totalPixels = totalDeTonsDeCinza.length;
+	percentagem  = ((tamanhoRLE * 100) / totalPixels);
+	System.out.println("Após a RLE sem perdas a imgem é ["+ percentagem+"]% do valor original");
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	}
 	
 
